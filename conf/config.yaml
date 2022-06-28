@@ -1,0 +1,44 @@
+trainer:
+  _target_: trainer.Trainer
+  # episode
+  n_episodes: 1000
+  max_t: 3000
+  
+  batch_size: 64
+  gamma: 0.99  # discount factor
+  tau: 0.001  # soft update of target parameters
+
+  # logistical
+  n_agents: 20
+  run_headless: True
+  print_setup: True
+  print_every: 10
+  target_score: 31
+  window_size: 100
+  scores_path: scores.pkl
+
+  # rpb
+  buffer_size: 1000000  # replay buffer size
+
+  agent_cfg:
+    actor:
+      lr: 0.0001
+      hidden_units: [512, 256, 128, 64]
+    critic:
+      lr: 0.0003
+      weight_decay: 0
+      fc_1: 384
+      fc_2: 256
+      fc_3: 128
+    eps:
+      init: 1.0
+      end: 0.01
+      decay: 0.995
+    learn_iterations: 15
+    update_every: 10
+    seed: 2
+  
+  oun_cfg:
+    mu: 0.0
+    theta: 0.15
+    sigma: 0.2
